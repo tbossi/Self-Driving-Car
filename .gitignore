@@ -1,0 +1,4 @@
+Template_Target 1\.dep
+out/
+startup_stm32f10x_md\.lst
+Template\.map
