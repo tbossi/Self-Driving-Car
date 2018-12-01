@@ -471,6 +471,46 @@
               <FileType>1</FileType>
               <FilePath>.\src\SimulatorTask.c</FilePath>
             </File>
+            <File>
+              <FileName>DriverTask.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\DriverTask.h</FilePath>
+            </File>
+            <File>
+              <FileName>DriverTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\DriverTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>PositionTask.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\PositionTask.h</FilePath>
+            </File>
+            <File>
+              <FileName>PositionTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\PositionTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>ComunicationTask.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\ComunicationTask.h</FilePath>
+            </File>
+            <File>
+              <FileName>ComunicationTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\ComunicationTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>AperiodicServerTask.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\AperiodicServerTask.h</FilePath>
+            </File>
+            <File>
+              <FileName>AperiodicServerTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\AperiodicServerTask.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
