@@ -121,7 +121,6 @@
 
 /*--------------------------- os_idle_demon ---------------------------------*/
 
-extern volatile int T1;
 extern volatile int IDLE;
 
 __task void os_idle_demon (void) {
@@ -129,7 +128,6 @@ __task void os_idle_demon (void) {
   /* to run. The 'os_xxx' function calls are not allowed from this task.  */
 
   for (;;) {
-     T1 = 0;
      IDLE = 1;
 
   /* HERE: include optional user code to be executed when no task runs.*/

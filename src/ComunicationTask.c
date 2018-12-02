@@ -1,18 +1,26 @@
 #include <RTL.h>
 #include "ComunicationTask.h"
 #include "TaskPriorities.h"
+#include "Tasks.h"
 
-extern volatile int T3 = 0;
+static void comunicate(void)
+{
+	int x;
+	for (x = 0; x < 2400000; x++)
+	{
+		x++;
+		x--;
+	}
+}
 
 __task void ComunicationTask(void)
 {
 	os_itv_set(ComunicationTaskPeriod);
 	while (1)
 	{
-		T3 = 1;
-		//todo
-		
-		T3 = 0;
+		Log_Comunication_Start();
+		comunicate();
+		Log_Comunication_End();
 		os_itv_wait();
 	}
 }

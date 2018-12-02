@@ -188,28 +188,28 @@
       <LogicAnalyzers>
         <Wi>
           <IntNumber>0</IntNumber>
-          <FirstString>`T1</FirstString>
-          <SecondString>FF000000000000000000E0410000C0FFFFFFDF410100000000000000000000000000000054310000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000001000000E7E32EB00ACACC3F0000000000000000000000000000000000000000D0190008</SecondString>
+          <FirstString>`IDLE</FirstString>
+          <SecondString>00800000000000000000E0410000C0FFFFFFDF410100000000000000000000000000000049444C4500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000100000052EC42ED3FCAC83F0000000000000000000000000000000000000000D0190008</SecondString>
         </Wi>
         <Wi>
           <IntNumber>1</IntNumber>
-          <FirstString>`IDLE</FirstString>
-          <SecondString>00800000000000000000E0410000C0FFFFFFDF410100000000000000000000000000000049444C450000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000020000004F4F04832869C63F0000000000000000000000000000000000000000D0190008</SecondString>
+          <FirstString>`Driver.running</FirstString>
+          <SecondString>00800000000000000000E0410000C0FFFFFFDF41010000000000000000000000000000004472697665722E72756E6E696E670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000EC44AF0470CDC93F00000000000000000000000000000000000000002C060008</SecondString>
         </Wi>
         <Wi>
           <IntNumber>2</IntNumber>
-          <FirstString>`T2</FirstString>
-          <SecondString>00008000000000000000E0410000C0FFFFFFDF4101000000000000000000000000000000543200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000030000009A9999999999C93F00000000000000000000000000000000000000008C030008</SecondString>
+          <FirstString>`Position.running</FirstString>
+          <SecondString>FF0000000000000000000000000000000000F03F01000000000000000000000000000000506F736974696F6E2E72756E6E696E67000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000003000000EC44AF0470CDC93F0000000000000000000000000000000000000000A0050008</SecondString>
         </Wi>
         <Wi>
           <IntNumber>3</IntNumber>
-          <FirstString>`T3</FirstString>
-          <SecondString>00000000000000000000E0410000C0FFFFFFDF4101000000000000000000000000000000543300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000040000009A9999999999C93F00000000000000000000000000000000000000008C030008</SecondString>
+          <FirstString>`Comunication.running</FirstString>
+          <SecondString>00800000000000000000E0410000C0FFFFFFDF4101000000000000000000000000000000436F6D756E69636174696F6E2E72756E6E696E670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000004000000EC44AF0470CDC93F0000000000000000000000000000000000000000A0050008</SecondString>
         </Wi>
         <Wi>
           <IntNumber>4</IntNumber>
-          <FirstString>`T4</FirstString>
-          <SecondString>FF000000000000000000E0410000C0FFFFFFDF4101000000000000000000000000000000543400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000050000009A9999999999C93F00000000000000000000000000000000000000008C030008</SecondString>
+          <FirstString>`AperiodicServer.running</FirstString>
+          <SecondString>00008000000000000000E0410000C0FFFFFFDF410100000000000000000000000000000041706572696F6469635365727665722E72756E6E696E670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000005000000EB44AF0470CDC93F0000000000000000000000000000000000000000A0050008</SecondString>
         </Wi>
       </LogicAnalyzers>
     </TargetOption>
@@ -267,10 +267,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>24</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>110</TopLine>
-      <CurrentLine>132</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\drivers\RTX_Config.c</PathWithFileName>
       <FilenameWithoutPath>RTX_Config.c</FilenameWithoutPath>
@@ -285,8 +285,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>129</TopLine>
-      <CurrentLine>133</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\drivers\startup_stm32f10x_md.s</PathWithFileName>
       <FilenameWithoutPath>startup_stm32f10x_md.s</FilenameWithoutPath>
@@ -405,8 +405,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>6</CurrentLine>
+      <TopLine>3</TopLine>
+      <CurrentLine>23</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -419,10 +419,10 @@
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>14</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>2</TopLine>
-      <CurrentLine>4</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\TaskPriorities.h</PathWithFileName>
       <FilenameWithoutPath>TaskPriorities.h</FilenameWithoutPath>
@@ -453,8 +453,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>3</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\SimulatorTask.c</PathWithFileName>
       <FilenameWithoutPath>SimulatorTask.c</FilenameWithoutPath>
@@ -469,8 +469,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\DriverTask.h</PathWithFileName>
       <FilenameWithoutPath>DriverTask.h</FilenameWithoutPath>
@@ -483,10 +483,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>18</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>2</TopLine>
+      <CurrentLine>23</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\DriverTask.c</PathWithFileName>
       <FilenameWithoutPath>DriverTask.c</FilenameWithoutPath>
@@ -515,10 +515,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>20</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>4</TopLine>
+      <CurrentLine>23</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\PositionTask.c</PathWithFileName>
       <FilenameWithoutPath>PositionTask.c</FilenameWithoutPath>
@@ -547,10 +547,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>24</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>19</CurrentLine>
+      <TopLine>4</TopLine>
+      <CurrentLine>23</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\ComunicationTask.c</PathWithFileName>
       <FilenameWithoutPath>ComunicationTask.c</FilenameWithoutPath>
@@ -581,11 +581,43 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>19</CurrentLine>
+      <TopLine>4</TopLine>
+      <CurrentLine>9</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\AperiodicServerTask.c</PathWithFileName>
       <FilenameWithoutPath>AperiodicServerTask.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>23</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>28</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1</TopLine>
+      <CurrentLine>12</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\Tasks.h</PathWithFileName>
+      <FilenameWithoutPath>Tasks.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>24</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1</TopLine>
+      <CurrentLine>30</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\Tasks.c</PathWithFileName>
+      <FilenameWithoutPath>Tasks.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

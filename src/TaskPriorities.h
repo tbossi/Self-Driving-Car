@@ -1,5 +1,5 @@
-#ifndef TASK_PRIORITIES
-	#define TASK_PRIORITIES
+#ifndef TASK_PRIORITIES_H
+	#define TASK_PRIORITIES_H
 	
 	#ifdef DEBUG
 		#define DEMULTIPLIER 0.2
@@ -8,16 +8,16 @@
 	#endif
 
 	#define DriverTaskDefaultPriority 50
-	#define DriverTaskPeriod (U16)(10 * DEMULTIPLIER)
+	#define DriverTaskPeriod (U16)(DEMULTIPLIER * 10)
 	
 	#define PositionTaskDefaultPriority 40
-	#define PositionTaskPeriod (U16)(50 * DEMULTIPLIER)
+	#define PositionTaskPeriod (U16)(DEMULTIPLIER * 50)
 	
 	#define ComunicationTaskDefaultPriority 30
-	#define ComunicationTaskPeriod (U16)(200 * DEMULTIPLIER)
+	#define ComunicationTaskPeriod (U16)(DEMULTIPLIER * 200)
 	
 	#define AperiodicServerTaskDefaultPriority 10
-	#define AperiodicServerTaskPeriod (U16)(1 * DEMULTIPLIER)
+	#define AperiodicServerTaskPeriod (U16)(DEMULTIPLIER * 1)
 	
 	#define SimulatorTaskDefaultPriority 130
 #endif

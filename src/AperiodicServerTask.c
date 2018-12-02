@@ -1,18 +1,26 @@
 #include <RTL.h>
 #include "AperiodicServerTask.h"
 #include "TaskPriorities.h"
+#include "Tasks.h"
 
-extern volatile int T4 = 0;
+static void work(void)
+{
+	int x;
+	for (x = 0; x < 8000; x++)
+	{
+		x++;
+		x--;
+	}
+}
 
 __task void AperiodicServerTask(void)
 {
 	os_itv_set(AperiodicServerTaskPeriod);
 	while (1)
 	{
-		T4 = 1;
-		//todo
-		
-		T4 = 0;
+		Log_AperiodicServer_Start();
+		work();
+		Log_AperiodicServer_End();
 		os_itv_wait();
 	}
 }

@@ -511,6 +511,16 @@
               <FileType>1</FileType>
               <FilePath>.\src\AperiodicServerTask.c</FilePath>
             </File>
+            <File>
+              <FileName>Tasks.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Tasks.h</FilePath>
+            </File>
+            <File>
+              <FileName>Tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Tasks.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
