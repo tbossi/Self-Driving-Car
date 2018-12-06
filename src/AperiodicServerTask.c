@@ -5,6 +5,7 @@
 
 static void work(void)
 {
+	//gestisce tutti gli interrupt dei sensori salvando i valori in memoria
 	int x;
 	for (x = 0; x < 8000; x++)
 	{
@@ -13,7 +14,7 @@ static void work(void)
 	}
 }
 
-__task void AperiodicServerTask(void)
+__task void AperiodicServerTask(void *argv)
 {
 	os_itv_set(AperiodicServerTaskPeriod);
 	while (1)

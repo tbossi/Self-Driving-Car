@@ -7,12 +7,7 @@
 #include "AperiodicServerTask.h"
 
 #include "Tasks.h"
-
-struct TaskTracker
-{
-	OS_TID id;
-	volatile int running;
-};
+#include "CarInfo.h"
 
 extern volatile int IDLE = 0;
 
@@ -65,22 +60,26 @@ void Log_AperiodicServer_End(void)
 	AperiodicServer.running = 0;
 }
 
-TaskTracker createTask(void (*task)(void), U8 priority)
+TaskTracker createTask(void (*task)(void *), U8 priority, void* argv)
 {
 	TaskTracker t;
 	t.running = 0;
-	t.id = os_tsk_create(task, priority);
+	t.id = os_tsk_create_ex(task, priority, argv);
 	return t;
 }
 
 void CreateTasks(void)
 {
 	static int alreadyCreated = 0;
-	if (alreadyCreated) return;
+	CarInfo carInfo;
 	
+	if (alreadyCreated) return;
 	alreadyCreated = 1;
-	Driver = createTask(DriverTask, DriverTaskDefaultPriority);
-	Position = createTask(PositionTask, PositionTaskDefaultPriority);
-	Comunication = createTask(ComunicationTask, ComunicationTaskDefaultPriority);
-	AperiodicServer = createTask(AperiodicServerTask, AperiodicServerTaskDefaultPriority);
+	
+	carInfo = CarInfo_GetClearInstance();
+	
+	Driver = createTask(DriverTask, DriverTaskDefaultPriority, &carInfo);
+	Position = createTask(PositionTask, PositionTaskDefaultPriority, &carInfo);
+	Comunication = createTask(ComunicationTask, ComunicationTaskDefaultPriority, &carInfo);
+	AperiodicServer = createTask(AperiodicServerTask, AperiodicServerTaskDefaultPriority, &carInfo);
 }

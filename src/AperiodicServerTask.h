@@ -1,3 +1,3 @@
 #include <rtl.h>
 
-__task void AperiodicServerTask(void);
+__task void AperiodicServerTask(void *argv);

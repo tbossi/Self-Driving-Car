@@ -13,7 +13,7 @@ static void comunicate(void)
 	}
 }
 
-__task void ComunicationTask(void)
+__task void ComunicationTask(void *argv)
 {
 	os_itv_set(ComunicationTaskPeriod);
 	while (1)

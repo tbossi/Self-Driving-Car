@@ -16,7 +16,7 @@
 	#define ComunicationTaskDefaultPriority 30
 	#define ComunicationTaskPeriod (U16)(DEMULTIPLIER * 200)
 	
-	#define AperiodicServerTaskDefaultPriority 10
+	#define AperiodicServerTaskDefaultPriority 100
 	#define AperiodicServerTaskPeriod (U16)(DEMULTIPLIER * 1)
 	
 	#define SimulatorTaskDefaultPriority 130

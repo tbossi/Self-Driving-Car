@@ -13,7 +13,7 @@ static void locate(void)
 	}
 }
 
-__task void PositionTask(void)
+__task void PositionTask(void *argv)
 {
 	os_itv_set(PositionTaskPeriod);
 	while (1)

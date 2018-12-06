@@ -1,3 +1,3 @@
 #include <rtl.h>
 
-__task void PositionTask(void);
+__task void PositionTask(void *argv);

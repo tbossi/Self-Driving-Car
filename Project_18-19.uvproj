@@ -462,6 +462,16 @@
               <FilePath>.\src\TaskPriorities.h</FilePath>
             </File>
             <File>
+              <FileName>CarInfo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\CarInfo.h</FilePath>
+            </File>
+            <File>
+              <FileName>CarInfo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\CarInfo.c</FilePath>
+            </File>
+            <File>
               <FileName>SimulatorTask.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\SimulatorTask.h</FilePath>

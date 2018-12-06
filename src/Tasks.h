@@ -1,6 +1,10 @@
 #include <RTL.h>
 
-typedef struct TaskTracker TaskTracker;
+typedef struct TaskTracker
+{
+	OS_TID id;
+	volatile int running;
+} TaskTracker;
 
 void Log_Driver_Start(void);
 void Log_Driver_End(void);

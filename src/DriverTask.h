@@ -1,3 +1,3 @@
 #include <rtl.h>
 
-__task void DriverTask(void);
+__task void DriverTask(void *argv);

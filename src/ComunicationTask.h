@@ -1,3 +1,3 @@
 #include <rtl.h>
 
-__task void ComunicationTask(void);
+__task void ComunicationTask(void *argv);
