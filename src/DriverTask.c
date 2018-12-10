@@ -3,42 +3,42 @@
 #include "TaskPriorities.h"
 #include "Tasks.h"
 #include "CarInfo.h"
+#include "HardwareController.h"
 
-static void drive(CarInfo* carInfo)
+static void drive(CarData* carData)
 {
-	int isSpaceFrontAvailable = (*carinfo).Position.SpaceFront > SuggestedDistanceFromCar;
-	int isSpaceRearAvailable = (*carinfo).Position.SpaceRear > SuggestedDistanceFromCar;
+	int isSpaceFrontAvailable;
+	int isSpaceRearAvailable;
+	int isMaxSpeed;
+	isSpaceFrontAvailable = (*carData).CurrentCarInfo.Position.SpaceFront > SuggestedDistanceFromCar;
+	isSpaceRearAvailable = (*carData).CurrentCarInfo.Position.SpaceRear > SuggestedDistanceFromCar;
+	isMaxSpeed = (*carData).NavigationInfo.SuggestedSpeed <= (*carData).CurrentCarInfo.Speed;
 	
 	if ( !isSpaceFrontAvailable && isSpaceRearAvailable )
 	{
-		// rallenta
+		int amount = (*carData).CurrentCarInfo.Position.SpaceRear / SuggestedDistanceFromCar;
+		Car_Break(amount);
 	}
-	else if (!isSpaceFrontAvailable && !isSpaceRearAvailable)
+	else if ( (!isSpaceFrontAvailable && !isSpaceRearAvailable) || isMaxSpeed )
 	{
-		// mantieni la velocità		
+		Car_SpeedUp(0);	
 	}
 	else
 	{
-		// accelera
+		int amount = (*carData).CurrentCarInfo.Position.SpaceFront / SuggestedDistanceFromCar;
+		Car_SpeedUp(amount);
 	}
-	
-	//int x;
-	//for (x = 0; x < 80000; x++)
-	//{
-	//	x++;
-	//	x--;
-	//}
 }
 
 __task void DriverTask(void *argv)
 {
-	CarInfo* carInfo = (CarInfo*)argv;
+	CarData* carData = (CarData*)argv;
 	
 	os_itv_set(DriverTaskPeriod);
 	while (1)
 	{
 		Log_Driver_Start();
-		drive(carInfo);
+		drive(carData);
 		Log_Driver_End();
 		os_itv_wait();
 	}

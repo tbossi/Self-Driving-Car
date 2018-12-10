@@ -39,7 +39,7 @@
 //   <i> Set the stack size for tasks which is assigned by the system.
 //   <i> Default: 200
 #ifndef OS_STKSIZE
- #define OS_STKSIZE     50
+ #define OS_STKSIZE     200
 #endif
 
 // <q>Check for the stack overflow
@@ -153,7 +153,7 @@ void os_stk_overflow (OS_TID task_id) {
    /* page 'Active Tasks' to check, which task needs a bigger stack.       */
 
    /* HERE: include optional code to be executed on stack overflow. */
-   for (;;);
+   for (;;) { IDLE = task_id; }
 }
 
 

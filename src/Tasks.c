@@ -71,15 +71,15 @@ TaskTracker createTask(void (*task)(void *), U8 priority, void* argv)
 void CreateTasks(void)
 {
 	static int alreadyCreated = 0;
-	CarInfo carInfo;
+	CarData carData;
 	
 	if (alreadyCreated) return;
 	alreadyCreated = 1;
 	
-	carInfo = CarInfo_GetClearInstance();
+	carData = CarData_GetClearInstance();
 	
-	Driver = createTask(DriverTask, DriverTaskDefaultPriority, &carInfo);
-	Position = createTask(PositionTask, PositionTaskDefaultPriority, &carInfo);
-	Comunication = createTask(ComunicationTask, ComunicationTaskDefaultPriority, &carInfo);
-	AperiodicServer = createTask(AperiodicServerTask, AperiodicServerTaskDefaultPriority, &carInfo);
+	Driver = createTask(DriverTask, DriverTaskDefaultPriority, &carData);
+	Position = createTask(PositionTask, PositionTaskDefaultPriority, &carData);
+	Comunication = createTask(ComunicationTask, ComunicationTaskDefaultPriority, &carData);
+	AperiodicServer = createTask(AperiodicServerTask, AperiodicServerTaskDefaultPriority, &carData);
 }

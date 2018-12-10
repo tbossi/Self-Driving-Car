@@ -531,6 +531,16 @@
               <FileType>1</FileType>
               <FilePath>.\src\Tasks.c</FilePath>
             </File>
+            <File>
+              <FileName>HardwareController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\HardwareController.h</FilePath>
+            </File>
+            <File>
+              <FileName>HardwareController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\HardwareController.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

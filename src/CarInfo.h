@@ -2,12 +2,26 @@
 #define CAR_INFO_H
 
 #define SuggestedDistanceFromCar 60;
+#define SuggestedLateralDistance 10;
 
 typedef struct CarLocation
 {
 	double Latitude;
 	double Longitude;
 } CarLocation;
+
+typedef struct NavigationInfo
+{
+	CarLocation StartingPoint;
+	CarLocation EndingPoint;
+	CarLocation NextCheckpoint;
+	CarLocation CurrentPoint;
+	
+	double SuggestedSpeed;
+	
+	// other info from maps/cars/signals
+	
+} NavigationInfo;
 
 typedef struct CarPosition
 {
@@ -17,19 +31,23 @@ typedef struct CarPosition
 	double SpaceRear;  // distance in cm
 	
 	int Lane;
-	
-	CarLocation Location;
 } CarPosition;
 
 typedef struct CarInfo
 {
 	double Speed;
-	double Acceleration;
+	double DirectionAngle; 
 	double SteeringAngle;
+	
 	CarPosition Position;
 } CarInfo;
 
+typedef struct CarData
+{
+	CarInfo CurrentCarInfo;
+	NavigationInfo NavigationInfo;
+} CarData;
 
-CarInfo CarInfo_GetClearInstance(void);
+CarData CarData_GetClearInstance(void);
 
 #endif
