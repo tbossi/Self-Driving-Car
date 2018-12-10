@@ -16,4 +16,9 @@ void Log_AperiodicServer_Start(void);
 void Log_AperiodicServer_End(void);
 void Log_Idle_Start(void);
 
+void Notify_Driver(U16 flags);
+void Notify_Position(U16 flags);
+void Notify_Comunication(U16 flags);
+void Notify_AperiodicServer(U16 flags);
+
 void CreateTasks(void);

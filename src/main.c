@@ -2,7 +2,7 @@
 #include <stm32f10x.h>       // STM32F103 definitions
 #include "stm32f10x_it.h"    // interrupt
 
-//#define SIMULATION
+#define SIMULATION
 //#define DEBUG
 
 #include "Tasks.h"
@@ -14,7 +14,7 @@ __task void TaskInitializer(void)
 	CreateTasks();
 	
 	#ifdef SIMULATION
-	OS_TID SimulatorTaskId = os_tsk_create(SimulatorTask, SimulatorTaskDefaultPriority);
+	os_tsk_create(SimulatorTask, SimulatorTaskDefaultPriority);
 	#endif
   os_tsk_delete_self();
 }

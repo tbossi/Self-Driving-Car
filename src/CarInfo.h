@@ -38,6 +38,7 @@ typedef struct CarInfo
 	double Speed;
 	double DirectionAngle; 
 	double SteeringAngle;
+	double Oil;
 	
 	CarPosition Position;
 } CarInfo;

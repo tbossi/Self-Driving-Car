@@ -41,6 +41,7 @@ static CarInfo CarInfo_GetClearInstance(void)
 	carInfo.DirectionAngle = 0;
 	carInfo.SteeringAngle = 0;
 	carInfo.Position = pos;
+	carInfo.Oil = 0;
 	
 	return carInfo;
 }

@@ -2,25 +2,68 @@
 #include "AperiodicServerTask.h"
 #include "TaskPriorities.h"
 #include "Tasks.h"
+#include "HardwareController.h"
+#include "CarInfo.h"
 
-static void work(void)
+static void GetSensorData(CarData* carData)
 {
-	//gestisce tutti gli interrupt dei sensori salvando i valori in memoria
-	int x;
-	for (x = 0; x < 8000; x++)
+	U16 flags;
+	U16 ret_flags;
+	void* eventResult;
+	
+	flags = E_SpaceLeft | E_SpaceRight | E_SpaceFront | E_SpaceRear | E_Lane | E_Speed | E_SteeringAngle | E_Oil;
+  ret_flags = Wait_CarEvent(flags, 1);
+	
+	if ((eventResult = Get_CarEvent(E_SpaceLeft, ret_flags)) != NULL)
 	{
-		x++;
-		x--;
+		(*carData).CurrentCarInfo.Position.SpaceLeft = * (double*)eventResult;
+	}
+	
+	if ((eventResult = Get_CarEvent(E_SpaceRight, ret_flags)) != NULL)
+	{
+		(*carData).CurrentCarInfo.Position.SpaceRight = * (double*)eventResult;
+	}
+	
+	if ((eventResult = Get_CarEvent(E_SpaceFront, ret_flags)) != NULL)
+	{
+		(*carData).CurrentCarInfo.Position.SpaceFront = * (double*)eventResult;
+	}
+	
+	if ((eventResult = Get_CarEvent(E_SpaceRear, ret_flags)) != NULL)
+	{
+		(*carData).CurrentCarInfo.Position.SpaceRear = * (double*)eventResult;
+	}
+	
+	if ((eventResult = Get_CarEvent(E_Lane, ret_flags)) != NULL)
+	{
+		(*carData).CurrentCarInfo.Position.Lane = * (int*)eventResult;
+	}
+	
+	if ((eventResult = Get_CarEvent(E_Speed, ret_flags)) != NULL)
+	{
+		(*carData).CurrentCarInfo.Speed = * (double*)eventResult;
+	}
+	
+	if ((eventResult = Get_CarEvent(E_SteeringAngle, ret_flags)) != NULL)
+	{
+		(*carData).CurrentCarInfo.SteeringAngle = * (double*)eventResult;
+	}
+	
+	if ((eventResult = Get_CarEvent(E_Oil, ret_flags)) != NULL)
+	{
+		(*carData).CurrentCarInfo.Oil = * (double*)eventResult;
 	}
 }
 
 __task void AperiodicServerTask(void *argv)
 {
+	CarData* carData = (CarData*)argv;
+	
 	os_itv_set(AperiodicServerTaskPeriod);
 	while (1)
 	{
 		Log_AperiodicServer_Start();
-		work();
+		GetSensorData(carData);
 		Log_AperiodicServer_End();
 		os_itv_wait();
 	}

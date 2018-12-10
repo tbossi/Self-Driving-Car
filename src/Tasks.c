@@ -60,6 +60,11 @@ void Log_AperiodicServer_End(void)
 	AperiodicServer.running = 0;
 }
 
+void Notify_Driver(U16 flags) { os_evt_set(flags, Driver.id); }
+void Notify_Position(U16 flags) { os_evt_set(flags, Position.id); }
+void Notify_Comunication(U16 flags) { os_evt_set(flags, Comunication.id); }
+void Notify_AperiodicServer(U16 flags) { os_evt_set(flags, AperiodicServer.id); }
+
 TaskTracker createTask(void (*task)(void *), U8 priority, void* argv)
 {
 	TaskTracker t;
