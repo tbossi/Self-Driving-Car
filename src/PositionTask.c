@@ -4,6 +4,7 @@
 #include "TaskPriorities.h"
 #include "Tasks.h"
 #include "CarInfo.h"
+#include "HardwareController.h"
 
 static double distance(CarLocation a, CarLocation b)
 {
@@ -32,6 +33,18 @@ static double pseudorandomSpeed(double distance, U32 currentTick)
 		return distance / x;	
 }
 
+static void UpdatePosition(CarData* carData) {
+	U16 ret_flags;
+	void* eventResult;
+	
+  ret_flags = Wait_CarEvent(E_GPS, 10);
+	
+	if ((eventResult = Get_CarEvent(E_GPS, ret_flags)) != NULL)
+	{
+		(*carData).NavigationInfo.CurrentPoint = * (CarLocation*)eventResult;
+	}
+}
+
 static void locate(CarData* carData)
 {
 	CarLocation end;
@@ -40,6 +53,8 @@ static void locate(CarData* carData)
 	CarLocation nextCheckPoint;
 	
 	int x;
+	
+	UpdatePosition(carData);
 	
 	end = (*carData).NavigationInfo.EndingPoint;
 	start = (*carData).NavigationInfo.CurrentPoint;
@@ -50,6 +65,7 @@ static void locate(CarData* carData)
 	
 	(*carData).NavigationInfo.NextCheckpoint = nextCheckPoint;
 	(*carData).NavigationInfo.SuggestedSpeed = pseudorandomSpeed(distance(currentCheckPoint, nextCheckPoint), os_time_get());
+	(*carData).CurrentCarInfo.DirectionAngle = atan2(nextCheckPoint.Longitude - currentCheckPoint.Longitude, nextCheckPoint.Latitude - currentCheckPoint.Latitude);
 	
 	for (x = 0; x < 800000; x++)
 	{

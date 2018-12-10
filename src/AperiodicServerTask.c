@@ -53,6 +53,8 @@ static void GetSensorData(CarData* carData)
 	{
 		(*carData).CurrentCarInfo.Oil = * (double*)eventResult;
 	}
+	
+	//TODO far partire emergency task se c'è emergenza
 }
 
 __task void AperiodicServerTask(void *argv)

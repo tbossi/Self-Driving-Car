@@ -1,4 +1,5 @@
 #include <RTL.h>
+#include "CarInfo.h"
 #include "HardwareController.h"
 
 static void busyloop(int time)
@@ -35,6 +36,7 @@ extern volatile int SIM_Lane;
 extern volatile double SIM_Speed;
 extern volatile double SIM_SteeringAngle;
 extern volatile double SIM_Oil;
+extern volatile CarLocation SIM_CurrentLocation;
 // !!!
 
 U16 Wait_CarEvent(U16 flags, U16 timeout)
@@ -55,14 +57,15 @@ void* Get_CarEvent(U16 event, U16 raisedFlags)
 	os_evt_clr(event, os_tsk_self());
 	switch(event)
 	{
-		case E_SpaceLeft: return &SIM_SpaceLeft;
-		case E_SpaceRight: return &SIM_SpaceRight;
-		case E_SpaceFront: return &SIM_SpaceFront;
-		case E_SpaceRear: return &SIM_SpaceRear;
-		case E_Lane: return &SIM_Lane;
-		case E_Speed: return &SIM_Speed;
-		case E_SteeringAngle: return &SIM_SteeringAngle;
-		case E_Oil: return &SIM_Oil;
+		case E_SpaceLeft: return (void*) &SIM_SpaceLeft;
+		case E_SpaceRight: return (void*) &SIM_SpaceRight;
+		case E_SpaceFront: return (void*) &SIM_SpaceFront;
+		case E_SpaceRear: return (void*) &SIM_SpaceRear;
+		case E_Lane: return (void*) &SIM_Lane;
+		case E_Speed: return (void*) &SIM_Speed;
+		case E_SteeringAngle: return (void*) &SIM_SteeringAngle;
+		case E_Oil: return (void*) &SIM_Oil;
+		case E_GPS: return (void*) &SIM_CurrentLocation;
 		default: return NULL;
 	}
 }
