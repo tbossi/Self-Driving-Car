@@ -13,6 +13,7 @@ volatile double SIM_Speed = 0;
 volatile double SIM_SteeringAngle = 0;
 volatile double SIM_Oil = 0;
 volatile CarLocation SIM_CurrentLocation = { 0, 0 };
+volatile CarLocation SIM_EndingPoint = { 0, 0 };
 
 typedef struct Action {
   void (*func)(void);

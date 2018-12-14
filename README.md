@@ -10,6 +10,13 @@ Comunicazione		200 ms		30 ms
 
 Usando Rate Monotonic Analysis:
 
-t0 = 1 + 15 + 30 + 0.1 = 46.1
-t1 = 1*4 + 15 + 30 + 0.1 = 49.1
-t2 = 1*4 + 15 + 30 + 0.1 = 49.1  <<<
+t0 = A + G + P + C = 46.1 ms
+t1 = 46\*A + 4\*G + P + C = 53.6 ms 
+t2 = 53\*A + 5\*G + P + C = 55.3 ms
+t3 = 55\*A + 5\*G + P + C = 55.5 ms
+t4 = 55\*A + 5\*G + P + C = 55.5 ms <<<
+
+
+Note per lo sviluppo:
+-creare task per emergenze;
+-implementare task comunicazione;

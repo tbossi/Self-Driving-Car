@@ -5,12 +5,11 @@
 
 static void comunicate(void)
 {
-	int x;
-	for (x = 0; x < 2400000; x++)
-	{
-		x++;
-		x--;
-	}
+	U32 startingTime;
+	startingTime = os_time_get();
+	
+	
+	while (startingTime + 300 > os_time_get()) {;} //lose time in other comunication operations
 }
 
 __task void ComunicationTask(void *argv)

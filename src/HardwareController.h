@@ -12,6 +12,7 @@
 #define E_SteeringAngle 64
 #define E_Oil 					128
 #define E_GPS 					256
+#define E_EndingPoint		512
 
 void Car_SpeedUp(int amount);
 void Car_Break(int amount);

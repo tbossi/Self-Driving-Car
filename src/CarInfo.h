@@ -12,7 +12,6 @@ typedef struct CarLocation
 
 typedef struct NavigationInfo
 {
-	CarLocation StartingPoint;
 	CarLocation EndingPoint;
 	CarLocation NextCheckpoint;
 	CarLocation CurrentPoint;

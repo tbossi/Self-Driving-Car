@@ -14,17 +14,17 @@ static void busyloop(int time)
 
 void Car_SpeedUp(int amount)
 {
-	busyloop(250 + 10 * amount);
+	busyloop(2500 + 100 * amount);
 }
 
 void Car_Break(int amount)
 {
-	busyloop(150 + 10 * amount);
+	busyloop(1500 + 100 * amount);
 }
 
 void Car_Steer(int angle)
 {
-	busyloop(80 + (15 * angle * angle)/2 );
+	busyloop(800 + (75 * angle * angle) );
 }
 
 // values are set by simulator task!
@@ -37,6 +37,7 @@ extern volatile double SIM_Speed;
 extern volatile double SIM_SteeringAngle;
 extern volatile double SIM_Oil;
 extern volatile CarLocation SIM_CurrentLocation;
+extern volatile CarLocation SIM_EndingPoint;
 // !!!
 
 U16 Wait_CarEvent(U16 flags, U16 timeout)
@@ -66,6 +67,7 @@ void* Get_CarEvent(U16 event, U16 raisedFlags)
 		case E_SteeringAngle: return (void*) &SIM_SteeringAngle;
 		case E_Oil: return (void*) &SIM_Oil;
 		case E_GPS: return (void*) &SIM_CurrentLocation;
+		case E_EndingPoint: return (void*) &SIM_EndingPoint;
 		default: return NULL;
 	}
 }
