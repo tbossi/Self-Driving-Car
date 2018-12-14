@@ -37,7 +37,7 @@ static void UpdatePosition(CarData* carData) {
 	U16 ret_flags;
 	void* eventResult;
 	
-  ret_flags = Wait_CarEvent(E_GPS | E_EndingPoint, 100);
+  ret_flags = Wait_CarEvent(E_GPS | E_EndingPoint, 10);
 	
 	if ((eventResult = Get_CarEvent(E_GPS, ret_flags)) != NULL)
 	{
