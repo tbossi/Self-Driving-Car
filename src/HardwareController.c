@@ -11,12 +11,12 @@ extern volatile int SIM_Lane;
 extern volatile double SIM_Speed;
 extern volatile double SIM_SteeringAngle;
 extern volatile double SIM_Oil;
-extern volatile CarLocation SIM_CurrentLocation;
-extern volatile CarLocation SIM_EndingPoint;
 
 extern volatile int SIM_Ext_StopRequest;
 extern volatile RoadSign SIM_Ext_RoadSign;
 extern volatile NearCarInfo SIM_Ext_NearCarInfo;
+extern volatile CarLocation SIM_Ext_CurrentLocation;
+extern volatile CarLocation SIM_Ext_EndingPoint;
 // !!!
 
 static void busyloop(int time)
@@ -89,8 +89,6 @@ void* Get_CarEvent(U16 event, U16 raisedFlags)
 		case E_Speed: return (void*) &SIM_Speed;
 		case E_SteeringAngle: return (void*) &SIM_SteeringAngle;
 		case E_Oil: return (void*) &SIM_Oil;
-		case E_GPS: return (void*) &SIM_CurrentLocation;
-		case E_EndingPoint: return (void*) &SIM_EndingPoint;
 		default: return NULL;
 	}
 }
@@ -116,6 +114,8 @@ void* Get_ExternalEvent(U16 event, U16 raisedFlags)
 		case E_Ext_StopRequest: return (void*) &SIM_Ext_StopRequest;
 		case E_Ext_RoadSign: return (void*) &SIM_Ext_RoadSign;
 		case E_Ext_NearCarInfo: return (void*) &SIM_Ext_NearCarInfo;
+		case E_Ext_GPS: return (void*) &SIM_Ext_CurrentLocation;
+		case E_Ext_EndingPoint: return (void*) &SIM_Ext_EndingPoint;
 		default: return NULL;
 	}
 }

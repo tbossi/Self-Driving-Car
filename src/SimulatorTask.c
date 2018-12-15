@@ -48,12 +48,12 @@ volatile int SIM_Lane = 0;
 volatile double SIM_Speed = 0;
 volatile double SIM_SteeringAngle = 0;
 volatile double SIM_Oil = 0;
-volatile CarLocation SIM_CurrentLocation = { 0, 0 };
-volatile CarLocation SIM_EndingPoint = { 0, 0 };
 
 volatile int SIM_Ext_StopRequest = 0;
 volatile RoadSign SIM_Ext_RoadSign = 0;
 volatile NearCarInfo SIM_Ext_NearCarInfo = { 0, { 0, 0 } };
+volatile CarLocation SIM_Ext_CurrentLocation = { 0, 0 };
+volatile CarLocation SIM_Ext_EndingPoint = { 0, 0 };
 
 #ifdef __callback
 #undef __callback
@@ -68,12 +68,12 @@ __callback(lane,SIM_Lane,int)
 __callback(speed,SIM_Speed,double)
 __callback(steeringAngle,SIM_SteeringAngle,double)
 __callback(oil,SIM_Oil,double)
-__callback(currentLocation,SIM_CurrentLocation,CarLocation)
-__callback(endingPoint,SIM_EndingPoint,CarLocation)
-	
+
 __callback(stopRequest,SIM_Ext_StopRequest,int)
 __callback(roadSign,SIM_Ext_RoadSign,RoadSign)
 __callback(nearCarInfo,SIM_Ext_NearCarInfo,NearCarInfo)
+__callback(currentLocation,SIM_Ext_CurrentLocation,CarLocation)
+__callback(endingPoint,SIM_Ext_EndingPoint,CarLocation)
 #undef __callback
 
 static void Execute(Action a)
@@ -106,22 +106,27 @@ CarLocation Current_1 = { 13.5006, 17.6445 };
 CarLocation Current_2 = { 14.1924, 16.5643 };
 CarLocation End_1 = { 19.197, 2.0078 };
 
-U16 allInternalFlags = E_SpaceLeft | E_SpaceRight | E_SpaceFront | E_SpaceRear | E_Lane | E_Speed | E_SteeringAngle | E_Oil | E_GPS | E_EndingPoint;
+U16 allInternalFlags = E_SpaceLeft | E_SpaceRight | E_SpaceFront | E_SpaceRear | E_Lane | E_Speed | E_SteeringAngle | E_Oil;
+U16 allExternalFlags = E_Ext_StopRequest | E_Ext_RoadSign | E_Ext_NearCarInfo | E_Ext_GPS | E_Ext_EndingPoint;
 
 __task void SimulatorTask(void)
 {
 	int x;
 	Action actions[50];
 	x = 0;
-	actions[x++] = action(cb(nop, &Speed_1), allInternalFlags, Notify_AperiodicServer, 10);
+	// resetting inputs:
+	actions[x++] = action(cb(nop, &Speed_1), allInternalFlags, Notify_AperiodicServer, 0);
+	actions[x++] = action(cb(nop, &Speed_1), allExternalFlags, Notify_Position, 0);
+	actions[x++] = action(cb(nop, &Speed_1), allExternalFlags, Notify_Comunication, 10); 
+	
 	actions[x++] = action(cb(oil, &Oil_1), E_Oil, Notify_AperiodicServer, 0);
 	actions[x++] = action(cb(spaceRear, &Rear_1), E_SpaceRear, Notify_AperiodicServer, 0);
 	actions[x++] = action(cb(spaceLeft, &Left_1), E_SpaceLeft, Notify_AperiodicServer, 0);
 	actions[x++] = action(cb(spaceFront, &Front_1), E_SpaceFront, Notify_AperiodicServer, 0);
 	actions[x++] = action(cb(spaceRight, &Right_1), E_SpaceRight, Notify_AperiodicServer, 0);
-	actions[x++] = action(cb(currentLocation, &Current_1), E_GPS, Notify_Position, 0);
-	actions[x++] = action(cb(endingPoint, &End_1), E_EndingPoint, Notify_Position, 10);
-	actions[x++] = action(cb(currentLocation, &Current_2), E_GPS, Notify_Position, 15);
+	actions[x++] = action(cb(currentLocation, &Current_1), E_Ext_GPS, Notify_Position, 0);
+	actions[x++] = action(cb(endingPoint, &End_1), E_Ext_EndingPoint, Notify_Position, 10);
+	actions[x++] = action(cb(currentLocation, &Current_2), E_Ext_GPS, Notify_Position, 15);
 
 	Simulate(x, actions, 1);
 }

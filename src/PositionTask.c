@@ -37,14 +37,14 @@ static void UpdatePosition(CarData* carData) {
 	U16 ret_flags;
 	void* eventResult;
 	
-  ret_flags = Wait_CarEvent(E_GPS | E_EndingPoint, 0);
+  ret_flags = Wait_ExternalEvent(E_Ext_GPS | E_Ext_EndingPoint, 0);
 	
-	if ((eventResult = Get_CarEvent(E_GPS, ret_flags)) != NULL)
+	if ((eventResult = Get_ExternalEvent(E_Ext_GPS, ret_flags)) != NULL)
 	{
 		(*carData).NavigationInfo.CurrentPoint = * (CarLocation*)eventResult;
 	}
 	
-	if ((eventResult = Get_CarEvent(E_EndingPoint, ret_flags)) != NULL)
+	if ((eventResult = Get_ExternalEvent(E_Ext_EndingPoint, ret_flags)) != NULL)
 	{
 		(*carData).NavigationInfo.EndingPoint = * (CarLocation*)eventResult;
 	}

@@ -14,13 +14,12 @@
 #define E_SteeringAngle 64
 #define E_Oil 					128
 
-#define E_GPS 					256
-#define E_EndingPoint		512
-
 // External events
 #define E_Ext_StopRequest		1
 #define E_Ext_RoadSign			2
 #define E_Ext_NearCarInfo		4
+#define E_Ext_GPS 					8
+#define E_Ext_EndingPoint		16
 
 void Car_SpeedUp(int amount);
 void Car_Break(int amount);
