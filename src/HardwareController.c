@@ -13,6 +13,10 @@ extern volatile double SIM_SteeringAngle;
 extern volatile double SIM_Oil;
 extern volatile CarLocation SIM_CurrentLocation;
 extern volatile CarLocation SIM_EndingPoint;
+
+extern volatile int SIM_Ext_StopRequest;
+extern volatile RoadSign SIM_Ext_RoadSign;
+extern volatile NearCarInfo SIM_Ext_NearCarInfo;
 // !!!
 
 static void busyloop(int time)
@@ -27,26 +31,36 @@ static void busyloop(int time)
 
 void Car_SpeedUp(int amount)
 {
-	busyloop(2500 + 100 * amount);
 	if (amount > 0)
 	{
 		SIM_Speed += 1.33 * amount;
 	}
+	
+	if (amount > 10) { amount = 10; }
+	busyloop(250 + 10 * amount);
 }
 
 void Car_Break(int amount)
 {
-	busyloop(1500 + 100 * amount);
 	if (amount > 0)
 	{
 		SIM_Speed -= 0.88 * amount;
 	}
+	
+	if (amount > 10) { amount = 10; }
+	busyloop(150 + 10 * amount);
 }
 
 void Car_Steer(int angle)
 {
-	busyloop(800 + (75 * angle * angle) );
 	SIM_SteeringAngle = 3.14 * angle / 180.0;
+	
+	busyloop(80 + (3 * angle * angle) / 100);
+}
+
+void Broadcast_CarInfo(NearCarInfo info)
+{
+	busyloop(1200 * ((os_time_get() % 4) + 1));
 }
 
 U16 Wait_CarEvent(U16 flags, U16 timeout)
@@ -77,6 +91,31 @@ void* Get_CarEvent(U16 event, U16 raisedFlags)
 		case E_Oil: return (void*) &SIM_Oil;
 		case E_GPS: return (void*) &SIM_CurrentLocation;
 		case E_EndingPoint: return (void*) &SIM_EndingPoint;
+		default: return NULL;
+	}
+}
+
+U16 Wait_ExternalEvent(U16 flags, U16 timeout)
+{	
+  if (os_evt_wait_or(flags, timeout) == OS_R_EVT)
+	{
+    return os_evt_get();
+  }
+	
+	return 0;
+}
+
+void* Get_ExternalEvent(U16 event, U16 raisedFlags)
+{
+	U16 available = event & raisedFlags;
+	if (!available) return NULL;
+	
+	os_evt_clr(event, os_tsk_self());
+	switch(event)
+	{
+		case E_Ext_StopRequest: return (void*) &SIM_Ext_StopRequest;
+		case E_Ext_RoadSign: return (void*) &SIM_Ext_RoadSign;
+		case E_Ext_NearCarInfo: return (void*) &SIM_Ext_NearCarInfo;
 		default: return NULL;
 	}
 }

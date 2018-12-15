@@ -45,7 +45,7 @@ static void drive(CarData* carData)
 		Car_Steer(0);
 	}
 	
-	while (startingTime + 10 > os_time_get()) {;} //lose time in other driving operations
+	while (startingTime + DriverTaskCost > os_time_get()) {;} //lose time in other driving operations
 }
 
 __task void DriverTask(void *argv)

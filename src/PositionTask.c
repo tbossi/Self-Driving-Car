@@ -37,7 +37,7 @@ static void UpdatePosition(CarData* carData) {
 	U16 ret_flags;
 	void* eventResult;
 	
-  ret_flags = Wait_CarEvent(E_GPS | E_EndingPoint, 10);
+  ret_flags = Wait_CarEvent(E_GPS | E_EndingPoint, 0);
 	
 	if ((eventResult = Get_CarEvent(E_GPS, ret_flags)) != NULL)
 	{
@@ -73,7 +73,7 @@ static void locate(CarData* carData)
 	(*carData).NavigationInfo.SuggestedSpeed = pseudorandomSpeed(distance(currentCheckPoint, nextCheckPoint), os_time_get());
 	(*carData).CurrentCarInfo.DirectionAngle = atan2(nextCheckPoint.Longitude - currentCheckPoint.Longitude, nextCheckPoint.Latitude - currentCheckPoint.Latitude);
 	
-	while (startingTime + 150 > os_time_get()) {;} //lose time in calculations of the position
+	while (startingTime + PositionTaskCost > os_time_get()) {;} //lose time in calculations of the position
 }
 
 __task void PositionTask(void *argv)

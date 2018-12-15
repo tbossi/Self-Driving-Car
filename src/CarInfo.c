@@ -18,6 +18,8 @@ static NavigationInfo NavigationInfo_GetClearInstance(void)
 	info.NextCheckpoint = next;
 	info.CurrentPoint = current;
 	info.SuggestedSpeed = 0;
+	info.RoadSign = 0;
+	info.StopRequest = 0;
 	
 	return info;
 }

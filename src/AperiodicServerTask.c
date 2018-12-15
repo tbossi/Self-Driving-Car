@@ -15,7 +15,7 @@ static void GetSensorData(CarData* carData)
 	startingTime = os_time_get();
 	
 	flags = E_SpaceLeft | E_SpaceRight | E_SpaceFront | E_SpaceRear | E_Lane | E_Speed | E_SteeringAngle | E_Oil;
-  ret_flags = Wait_CarEvent(flags, 1);
+  ret_flags = Wait_CarEvent(flags, 0);
 	
 	if ((eventResult = Get_CarEvent(E_SpaceLeft, ret_flags)) != NULL)
 	{
@@ -59,7 +59,7 @@ static void GetSensorData(CarData* carData)
 	
 	//TODO far partire emergency task se c'è emergenza
 	
-	while (startingTime + 1 > os_time_get()) {;} //lose time in other driving operations
+	while (startingTime + AperiodicServerTaskCost > os_time_get()) {;} //lose time in other driving operations
 }
 
 __task void AperiodicServerTask(void *argv)

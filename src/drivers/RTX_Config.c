@@ -39,7 +39,7 @@
 //   <i> Set the stack size for tasks which is assigned by the system.
 //   <i> Default: 200
 #ifndef OS_STKSIZE
- #define OS_STKSIZE     200
+ #define OS_STKSIZE     300
 #endif
 
 // <q>Check for the stack overflow

@@ -4,6 +4,8 @@
 #define SuggestedDistanceFromCar 60;
 #define SuggestedLateralDistance 10;
 
+typedef unsigned int RoadSign;
+
 typedef struct CarLocation
 {
 	double Latitude;
@@ -18,6 +20,8 @@ typedef struct NavigationInfo
 	
 	double SuggestedSpeed;
 	
+	RoadSign RoadSign;
+	int StopRequest;
 	// other info from maps/cars/signals
 	
 } NavigationInfo;
@@ -47,6 +51,12 @@ typedef struct CarData
 	CarInfo CurrentCarInfo;
 	NavigationInfo NavigationInfo;
 } CarData;
+
+typedef struct NearCarInfo
+{
+	double CurrentSpeed;
+	CarLocation CurrentLocation;
+} NearCarInfo;
 
 CarData CarData_GetClearInstance(void);
 
