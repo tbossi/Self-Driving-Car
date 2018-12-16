@@ -83,24 +83,15 @@ static void Execute(Action a)
 	if (a.wait > 0) { os_dly_wait(a.wait); }
 }
 
-static void Simulate(int size, Action actions[], int loop)
-{
-	int counter = 0;
-	do
-	{
-		Execute(actions[counter]);
-		counter = (counter + 1) % size;
-	} while (loop);
-}
-
 double Speed_1 = 30.0;
 double Speed_2 = 20.0;
 double SteeringAngle_1 = 0;
 double Oil_1 = 40.0;
-double Left_1 = 80;
-double Right_1 = 20;
-double Front_1 = 90.0;
-double Rear_1 = 50.0;
+double Left_1 = 180;
+double Right_1 = 60;
+double Right_2 = 1;
+double Front_1 = 290.0;
+double Rear_1 = 250.0;
 int Lane_1 = 0;
 CarLocation Current_1 = { 13.5006, 17.6445 };
 CarLocation Current_2 = { 14.1924, 16.5643 };
@@ -109,24 +100,46 @@ CarLocation End_1 = { 19.197, 2.0078 };
 U16 allInternalFlags = E_SpaceLeft | E_SpaceRight | E_SpaceFront | E_SpaceRear | E_Lane | E_Speed | E_SteeringAngle | E_Oil;
 U16 allExternalFlags = E_Ext_StopRequest | E_Ext_RoadSign | E_Ext_NearCarInfo | E_Ext_GPS | E_Ext_EndingPoint;
 
+void ResetAll(int wait)
+{
+	// resetting inputs to 0:
+	Execute(action(cb(nop, &Speed_1), allInternalFlags, Notify_AperiodicServer, 0));
+	Execute(action(cb(nop, &Speed_1), allExternalFlags, Notify_Position, 0));
+	Execute(action(cb(nop, &Speed_1), allExternalFlags, Notify_Comunication, wait)); 
+}
+
+void EventSet1(int wait)
+{
+	Execute(action(cb(oil, &Oil_1), E_Oil, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceRear, &Rear_1), E_SpaceRear, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceLeft, &Left_1), E_SpaceLeft, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceFront, &Front_1), E_SpaceFront, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceRight, &Right_1), E_SpaceRight, Notify_AperiodicServer, 0));
+	Execute(action(cb(speed, &Speed_2), E_Speed, Notify_AperiodicServer, 0));
+	Execute(action(cb(currentLocation, &Current_1), E_Ext_GPS, Notify_Position, 0));
+	Execute(action(cb(endingPoint, &End_1), E_Ext_EndingPoint, Notify_Position, 10));
+	Execute(action(cb(currentLocation, &Current_2), E_Ext_GPS, Notify_Position, wait));
+}
+
+void Emergency1(int wait)
+{
+	Execute(action(cb(speed, &Speed_1), E_Speed, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceRight, &Right_2), E_SpaceRight, Notify_AperiodicServer, wait));
+}
+
+
 __task void SimulatorTask(void)
 {
-	int x;
-	Action actions[50];
-	x = 0;
-	// resetting inputs:
-	actions[x++] = action(cb(nop, &Speed_1), allInternalFlags, Notify_AperiodicServer, 0);
-	actions[x++] = action(cb(nop, &Speed_1), allExternalFlags, Notify_Position, 0);
-	actions[x++] = action(cb(nop, &Speed_1), allExternalFlags, Notify_Comunication, 10); 
+	ResetAll(10);
 	
-	actions[x++] = action(cb(oil, &Oil_1), E_Oil, Notify_AperiodicServer, 0);
-	actions[x++] = action(cb(spaceRear, &Rear_1), E_SpaceRear, Notify_AperiodicServer, 0);
-	actions[x++] = action(cb(spaceLeft, &Left_1), E_SpaceLeft, Notify_AperiodicServer, 0);
-	actions[x++] = action(cb(spaceFront, &Front_1), E_SpaceFront, Notify_AperiodicServer, 0);
-	actions[x++] = action(cb(spaceRight, &Right_1), E_SpaceRight, Notify_AperiodicServer, 0);
-	actions[x++] = action(cb(currentLocation, &Current_1), E_Ext_GPS, Notify_Position, 0);
-	actions[x++] = action(cb(endingPoint, &End_1), E_Ext_EndingPoint, Notify_Position, 10);
-	actions[x++] = action(cb(currentLocation, &Current_2), E_Ext_GPS, Notify_Position, 15);
-
-	Simulate(x, actions, 1);
+	while(1)
+	{
+		int x;
+		for (x = 0; x < 100; x++)
+		{
+			EventSet1(15);
+		}
+		
+		Emergency1(233);
+	}
 }

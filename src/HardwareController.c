@@ -65,7 +65,7 @@ void Broadcast_CarInfo(NearCarInfo info)
 
 int SpaceAvailable(double space, double speed_cm_ms, int millis)
 {
-	return space / speed_cm_ms < millis;
+	return space / (double)millis < speed_cm_ms;
 }
 
 int IsEmergency(CarData* carData)

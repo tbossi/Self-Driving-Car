@@ -490,7 +490,7 @@
               <FileName>HardwareController.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\HardwareController.c</FilePath>
-            </File>  
+            </File>
             <File>
               <FileName>SimulatorTask.h</FileName>
               <FileType>5</FileType>
@@ -540,7 +540,7 @@
               <FileName>ComunicationTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\ComunicationTask.c</FilePath>
-            </File>            
+            </File>
             <File>
               <FileName>EmergencyTask.h</FileName>
               <FileType>5</FileType>
@@ -560,7 +560,7 @@
               <FileName>BaseTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\BaseTask.c</FilePath>
-            </File>                      
+            </File>
           </Files>
         </Group>
       </Groups>

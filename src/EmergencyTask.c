@@ -3,13 +3,20 @@
 
 #include "Tasks.h"
 #include "CarInfo.h"
+#include "HardwareController.h"
 
 static void HandleEmergency(CarData* carData)
 {
 	int emergencyEnd = 0;
 	while (!emergencyEnd)
 	{
-		emergencyEnd = 1;
+		Car_Break(5);
+		Car_Steer(30);
+		
+		emergencyEnd = (os_time_get() % 131) * 100 + 893;
+		while (emergencyEnd > 1) {emergencyEnd--;}
+		
+		emergencyEnd = !IsEmergency(carData);
 	}
 }
 
