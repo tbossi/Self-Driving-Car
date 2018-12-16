@@ -1,4 +1,5 @@
 #include <RTL.h>
+#include <stm32f10x.h>
 #include "CarInfo.h"
 #include "HardwareController.h"
 
@@ -29,6 +30,16 @@ static void busyloop(int time)
 	}
 }
 
+void Init_GPIO(void)
+{
+	RCC->APB2ENR |= RCC_APB2ENR_IOPAEN; // Enable GPIOA
+	RCC->APB2ENR |= RCC_APB2ENR_IOPBEN; // Enable GPIOB
+	RCC->APB2ENR |= RCC_APB2ENR_IOPCEN; // Enable GPIOC
+	GPIOA->CRL = 0x33333333; // PA 0..7 defined as Outputs
+	GPIOB->CRL = 0x33333333; // PB 0..7 defined as Outputs
+	GPIOC->CRL = 0x33333333; // PC 0..7 defined as Outputs
+}
+
 void Car_SpeedUp(int amount)
 {
 	if (amount > 0)
@@ -37,7 +48,9 @@ void Car_SpeedUp(int amount)
 	}
 	
 	if (amount > 10) { amount = 10; }
+	GPIOA->BSRR = amount;
 	busyloop(250 + 10 * amount);
+	GPIOA->BRR = amount;
 }
 
 void Car_Break(int amount)
@@ -48,14 +61,18 @@ void Car_Break(int amount)
 	}
 	
 	if (amount > 10) { amount = 10; }
+	GPIOB->BSRR = amount;
 	busyloop(150 + 10 * amount);
+	GPIOB->BRR = amount;
 }
 
 void Car_Steer(int angle)
 {
 	SIM_SteeringAngle = 3.14 * angle / 180.0;
 	
+	GPIOC->BSRR = angle;
 	busyloop(80 + (3 * angle * angle) / 100);
+	GPIOC->BRR = angle;
 }
 
 void Broadcast_CarInfo(NearCarInfo info)

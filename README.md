@@ -29,6 +29,4 @@ Developed using Keil uVision 4, for device STM32F103RB.
 * t4 = 55\*A + 5\*G + P + C = 55.5 ms <<<
 
 #### Note per lo sviluppo:
-- gestire emergenze
-- mettere gpio
 - casi di test

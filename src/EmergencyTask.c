@@ -7,16 +7,23 @@
 
 static void HandleEmergency(CarData* carData)
 {
-	int emergencyEnd = 0;
-	while (!emergencyEnd)
+	while (IsEmergency(carData))
 	{
+		// do something to handle the emergency
+		int x;
 		Car_Break(5);
 		Car_Steer(30);
 		
-		emergencyEnd = (os_time_get() % 131) * 100 + 893;
-		while (emergencyEnd > 1) {emergencyEnd--;}
-		
-		emergencyEnd = !IsEmergency(carData);
+		x = (os_time_get() % 131) * 10 + 83;
+		while (x > 1)
+		{
+			if (x % 1000)
+			{
+				Car_Break(5);
+				Car_Steer(-30);
+			}
+			x--;
+		}
 	}
 }
 

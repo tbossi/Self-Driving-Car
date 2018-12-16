@@ -21,6 +21,8 @@
 #define E_Ext_GPS 					8
 #define E_Ext_EndingPoint		16
 
+void Init_GPIO(void);
+
 void Car_SpeedUp(int amount);
 void Car_Break(int amount);
 void Car_Steer(int angle);

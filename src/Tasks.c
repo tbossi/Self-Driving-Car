@@ -18,7 +18,7 @@ TaskTracker Comunication;
 TaskTracker Base;
 TaskTracker Emergency;
 
-TaskTracker* runningTask; 
+static TaskTracker* runningTask; 
 
 #define __log_start(taskName) void Log_##taskName##_Start(void)\
 																{\

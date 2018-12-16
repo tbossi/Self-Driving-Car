@@ -83,19 +83,19 @@ static void Execute(Action a)
 	if (a.wait > 0) { os_dly_wait(a.wait); }
 }
 
-double Speed_1 = 30.0;
-double Speed_2 = 20.0;
-double SteeringAngle_1 = 0;
-double Oil_1 = 40.0;
-double Left_1 = 180;
-double Right_1 = 60;
-double Right_2 = 1;
-double Front_1 = 290.0;
-double Rear_1 = 250.0;
-int Lane_1 = 0;
-CarLocation Current_1 = { 13.5006, 17.6445 };
-CarLocation Current_2 = { 14.1924, 16.5643 };
-CarLocation End_1 = { 19.197, 2.0078 };
+static double Speed_1 = 30.0;
+static double Speed_2 = 20.0;
+static double SteeringAngle_1 = 0;
+static double Oil_1 = 40.0;
+static double Left_1 = 180;
+static double Right_1 = 60;
+static double Right_2 = 1;
+static double Front_1 = 290.0;
+static double Rear_1 = 250.0;
+static int Lane_1 = 0;
+static CarLocation Current_1 = { 13.5006, 17.6445 };
+static CarLocation Current_2 = { 14.1924, 16.5643 };
+static CarLocation End_1 = { 19.197, 2.0078 };
 
 U16 allInternalFlags = E_SpaceLeft | E_SpaceRight | E_SpaceFront | E_SpaceRear | E_Lane | E_Speed | E_SteeringAngle | E_Oil;
 U16 allExternalFlags = E_Ext_StopRequest | E_Ext_RoadSign | E_Ext_NearCarInfo | E_Ext_GPS | E_Ext_EndingPoint;
