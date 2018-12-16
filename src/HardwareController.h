@@ -26,6 +26,9 @@ void Car_Break(int amount);
 void Car_Steer(int angle);
 void Broadcast_CarInfo(NearCarInfo info);
 
+int SpaceAvailable(double space, double speed_cm_ms, int millis);
+int IsEmergency(CarData* carData);
+
 U16 Wait_CarEvent(U16 flags, U16 timeout);
 void* Get_CarEvent(U16 event, U16 raisedFlags);
 

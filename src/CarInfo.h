@@ -1,9 +1,6 @@
 #ifndef CAR_INFO_H
 #define CAR_INFO_H
 
-#define SuggestedDistanceFromCar 60;
-#define SuggestedLateralDistance 10;
-
 typedef unsigned int RoadSign;
 
 typedef struct CarLocation
@@ -18,7 +15,7 @@ typedef struct NavigationInfo
 	CarLocation NextCheckpoint;
 	CarLocation CurrentPoint;
 	
-	double SuggestedSpeed;
+	double SuggestedSpeed; // km/h
 	
 	RoadSign RoadSign;
 	int StopRequest;
@@ -38,10 +35,10 @@ typedef struct CarPosition
 
 typedef struct CarInfo
 {
-	double Speed;
-	double DirectionAngle; 
-	double SteeringAngle;
-	double Oil;
+	double Speed; // km/h
+	double DirectionAngle; // radians 
+	double SteeringAngle; // radians
+	double Oil; // liters
 	
 	CarPosition Position;
 } CarInfo;

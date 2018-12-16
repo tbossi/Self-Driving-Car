@@ -23,5 +23,10 @@
 	#define ComunicationTaskPeriod (U16)(DEMULTIPLIER * 2000)
 	#define ComunicationTaskCost (U16)(DEMULTIPLIER * 300)
 	
+	#define BaseTaskDefaultPriority 10
+	
+	#define EmergencyTaskHighPriority 90
+	#define EmergencyTaskDefaultPriority 1
+	
 	#define SimulatorTaskDefaultPriority 130
 #endif

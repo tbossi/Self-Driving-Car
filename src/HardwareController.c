@@ -63,6 +63,23 @@ void Broadcast_CarInfo(NearCarInfo info)
 	busyloop(1200 * ((os_time_get() % 4) + 1));
 }
 
+int SpaceAvailable(double space, double speed_cm_ms, int millis)
+{
+	return space / speed_cm_ms < millis;
+}
+
+int IsEmergency(CarData* carData)
+{
+	double speed_cm_ms = (*carData).CurrentCarInfo.Speed / 36.0;
+	
+	int emergency = SpaceAvailable((*carData).CurrentCarInfo.Position.SpaceFront, speed_cm_ms, 80);
+	emergency = emergency || SpaceAvailable((*carData).CurrentCarInfo.Position.SpaceRear, speed_cm_ms, 80);
+	emergency = emergency || ((*carData).CurrentCarInfo.Speed > 15 && (*carData).CurrentCarInfo.Position.SpaceLeft < 20 );
+	emergency = emergency || ((*carData).CurrentCarInfo.Speed > 15 && (*carData).CurrentCarInfo.Position.SpaceRight < 20 );
+
+	return emergency;
+}
+
 U16 Wait_CarEvent(U16 flags, U16 timeout)
 {	
   if (os_evt_wait_or(flags, timeout) == OS_R_EVT)

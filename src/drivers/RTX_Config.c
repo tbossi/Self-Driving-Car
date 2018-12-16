@@ -121,14 +121,14 @@
 
 /*--------------------------- os_idle_demon ---------------------------------*/
 
-extern volatile int IDLE;
+//extern volatile int IDLE;
 
 __task void os_idle_demon (void) {
   /* The idle demon is a system task, running when no other task is ready */
   /* to run. The 'os_xxx' function calls are not allowed from this task.  */
 
   for (;;) {
-     IDLE = 1;
+     //IDLE = 1;
 
   /* HERE: include optional user code to be executed when no task runs.*/
   }
@@ -153,7 +153,7 @@ void os_stk_overflow (OS_TID task_id) {
    /* page 'Active Tasks' to check, which task needs a bigger stack.       */
 
    /* HERE: include optional code to be executed on stack overflow. */
-   for (;;) { IDLE = task_id; }
+   for (;;) { /*IDLE = task_id;*/ }
 }
 
 

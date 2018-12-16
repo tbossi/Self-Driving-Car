@@ -195,28 +195,33 @@
       <LogicAnalyzers>
         <Wi>
           <IntNumber>0</IntNumber>
-          <FirstString>`IDLE</FirstString>
-          <SecondString>00800000000000000000E0410000C0FFFFFFDF410100000000000000000000000000000049444C45000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000005000000895E51DFCEECC83F0000000000000000000000000000000000000000D0190008</SecondString>
+          <FirstString>`Driver.running</FirstString>
+          <SecondString>00800000000000000000E0410000C0FFFFFFDF41010000000000000000000000000000004472697665722E72756E6E696E6700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000020000007F9EE942555BC53F00000000000000000000000000000000000000002C060008</SecondString>
         </Wi>
         <Wi>
           <IntNumber>1</IntNumber>
-          <FirstString>`Driver.running</FirstString>
-          <SecondString>00800000000000000000E0410000C0FFFFFFDF41010000000000000000000000000000004472697665722E72756E6E696E6700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000020000005EA82B48CCC4C93F00000000000000000000000000000000000000002C060008</SecondString>
+          <FirstString>`Position.running</FirstString>
+          <SecondString>FF0000000000000000000000000000000000F03F01000000000000000000000000000000506F736974696F6E2E72756E6E696E670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000030000007F9EE942555BC53F0000000000000000000000000000000000000000A0050008</SecondString>
         </Wi>
         <Wi>
           <IntNumber>2</IntNumber>
-          <FirstString>`Position.running</FirstString>
-          <SecondString>FF0000000000000000000000000000000000F03F01000000000000000000000000000000506F736974696F6E2E72756E6E696E670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000030000005EA82B48CCC4C93F0000000000000000000000000000000000000000A0050008</SecondString>
+          <FirstString>`Comunication.running</FirstString>
+          <SecondString>00800000000000000000E0410000C0FFFFFFDF4101000000000000000000000000000000436F6D756E69636174696F6E2E72756E6E696E6700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000040000007F9EE942555BC53F0000000000000000000000000000000000000000A0050008</SecondString>
         </Wi>
         <Wi>
           <IntNumber>3</IntNumber>
-          <FirstString>`Comunication.running</FirstString>
-          <SecondString>00800000000000000000E0410000C0FFFFFFDF4101000000000000000000000000000000436F6D756E69636174696F6E2E72756E6E696E6700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000040000005EA82B48CCC4C93F0000000000000000000000000000000000000000A0050008</SecondString>
+          <FirstString>`AperiodicServer.running</FirstString>
+          <SecondString>00008000000000000000E0410000C0FFFFFFDF410100000000000000000000000000000041706572696F6469635365727665722E72756E6E696E6700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000010000007E9EE942555BC53F0000000000000000000000000000000000000000A0050008</SecondString>
         </Wi>
         <Wi>
           <IntNumber>4</IntNumber>
-          <FirstString>`AperiodicServer.running</FirstString>
-          <SecondString>00008000000000000000E0410000C0FFFFFFDF410100000000000000000000000000000041706572696F6469635365727665722E72756E6E696E6700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000010000005DA82B48CCC4C93F0000000000000000000000000000000000000000A0050008</SecondString>
+          <FirstString>`Emergency.running</FirstString>
+          <SecondString>00800000000000000000E0410000C0FFFFFFDF4101000000000000000000000000000000456D657267656E63792E72756E6E696E670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000006000000AF30049F553DC53F0000000000000000000000000000000000000000C6050008</SecondString>
+        </Wi>
+        <Wi>
+          <IntNumber>5</IntNumber>
+          <FirstString>`Base.running</FirstString>
+          <SecondString>00800000000000000000E0410000C0FFFFFFDF4101000000000000000000000000000000426173652E72756E6E696E6700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000005000000555555555555C53F00000000000000000000000000000000000000009A050008</SecondString>
         </Wi>
       </LogicAnalyzers>
     </TargetOption>
@@ -274,7 +279,7 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>77</ColumnNumber>
+      <ColumnNumber>33</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
@@ -292,8 +297,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>128</TopLine>
-      <CurrentLine>133</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\drivers\startup_stm32f10x_md.s</PathWithFileName>
       <FilenameWithoutPath>startup_stm32f10x_md.s</FilenameWithoutPath>
@@ -412,8 +417,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>23</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -426,10 +431,10 @@
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>35</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>10</TopLine>
+      <CurrentLine>26</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\TaskPriorities.h</PathWithFileName>
       <FilenameWithoutPath>TaskPriorities.h</FilenameWithoutPath>
@@ -442,10 +447,10 @@
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>26</ColumnNumber>
+      <ColumnNumber>27</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>13</TopLine>
-      <CurrentLine>19</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\CarInfo.h</PathWithFileName>
       <FilenameWithoutPath>CarInfo.h</FilenameWithoutPath>
@@ -490,10 +495,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>55</ColumnNumber>
+      <ColumnNumber>56</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>46</TopLine>
-      <CurrentLine>128</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\SimulatorTask.c</PathWithFileName>
       <FilenameWithoutPath>SimulatorTask.c</FilenameWithoutPath>
@@ -522,10 +527,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>91</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>5</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\DriverTask.c</PathWithFileName>
       <FilenameWithoutPath>DriverTask.c</FilenameWithoutPath>
@@ -554,10 +559,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>45</ColumnNumber>
+      <ColumnNumber>3</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>56</TopLine>
-      <CurrentLine>47</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\PositionTask.c</PathWithFileName>
       <FilenameWithoutPath>PositionTask.c</FilenameWithoutPath>
@@ -586,7 +591,7 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>32</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
@@ -618,10 +623,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>36</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>13</TopLine>
+      <CurrentLine>7</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\AperiodicServerTask.c</PathWithFileName>
       <FilenameWithoutPath>AperiodicServerTask.c</FilenameWithoutPath>
@@ -636,8 +641,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>21</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\Tasks.h</PathWithFileName>
       <FilenameWithoutPath>Tasks.h</FilenameWithoutPath>
@@ -653,7 +658,7 @@
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <CurrentLine>63</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\Tasks.c</PathWithFileName>
       <FilenameWithoutPath>Tasks.c</FilenameWithoutPath>
@@ -668,8 +673,8 @@
       <Focus>0</Focus>
       <ColumnNumber>29</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>20</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\HardwareController.h</PathWithFileName>
       <FilenameWithoutPath>HardwareController.h</FilenameWithoutPath>
@@ -682,13 +687,77 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>15</ColumnNumber>
+      <ColumnNumber>102</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>117</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\HardwareController.c</PathWithFileName>
       <FilenameWithoutPath>HardwareController.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>29</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\EmergencyTask.h</PathWithFileName>
+      <FilenameWithoutPath>EmergencyTask.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>30</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>3</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\EmergencyTask.c</PathWithFileName>
+      <FilenameWithoutPath>EmergencyTask.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>31</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\BaseTask.h</PathWithFileName>
+      <FilenameWithoutPath>BaseTask.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>32</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>4</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\BaseTask.c</PathWithFileName>
+      <FilenameWithoutPath>BaseTask.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -462,6 +462,16 @@
               <FilePath>.\src\TaskPriorities.h</FilePath>
             </File>
             <File>
+              <FileName>Tasks.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Tasks.h</FilePath>
+            </File>
+            <File>
+              <FileName>Tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Tasks.c</FilePath>
+            </File>
+            <File>
               <FileName>CarInfo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\CarInfo.h</FilePath>
@@ -472,6 +482,16 @@
               <FilePath>.\src\CarInfo.c</FilePath>
             </File>
             <File>
+              <FileName>HardwareController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\HardwareController.h</FilePath>
+            </File>
+            <File>
+              <FileName>HardwareController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\HardwareController.c</FilePath>
+            </File>  
+            <File>
               <FileName>SimulatorTask.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\SimulatorTask.h</FilePath>
@@ -480,6 +500,16 @@
               <FileName>SimulatorTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\SimulatorTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>AperiodicServerTask.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\AperiodicServerTask.h</FilePath>
+            </File>
+            <File>
+              <FileName>AperiodicServerTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\AperiodicServerTask.c</FilePath>
             </File>
             <File>
               <FileName>DriverTask.h</FileName>
@@ -510,37 +540,27 @@
               <FileName>ComunicationTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\ComunicationTask.c</FilePath>
-            </File>
+            </File>            
             <File>
-              <FileName>AperiodicServerTask.h</FileName>
+              <FileName>EmergencyTask.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\AperiodicServerTask.h</FilePath>
+              <FilePath>.\src\EmergencyTask.h</FilePath>
             </File>
             <File>
-              <FileName>AperiodicServerTask.c</FileName>
+              <FileName>EmergencyTask.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\AperiodicServerTask.c</FilePath>
+              <FilePath>.\src\EmergencyTask.c</FilePath>
             </File>
             <File>
-              <FileName>Tasks.h</FileName>
+              <FileName>BaseTask.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Tasks.h</FilePath>
+              <FilePath>.\src\BaseTask.h</FilePath>
             </File>
             <File>
-              <FileName>Tasks.c</FileName>
+              <FileName>BaseTask.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\Tasks.c</FilePath>
-            </File>
-            <File>
-              <FileName>HardwareController.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\HardwareController.h</FilePath>
-            </File>
-            <File>
-              <FileName>HardwareController.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\HardwareController.c</FilePath>
-            </File>
+              <FilePath>.\src\BaseTask.c</FilePath>
+            </File>                      
           </Files>
         </Group>
       </Groups>

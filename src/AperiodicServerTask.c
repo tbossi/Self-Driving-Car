@@ -57,7 +57,10 @@ static void GetSensorData(CarData* carData)
 		(*carData).CurrentCarInfo.Oil = * (double*)eventResult;
 	}
 	
-	//TODO far partire emergency task se c'è emergenza
+	if (IsEmergency(carData))
+	{
+		Emergency_Wake();
+	}
 	
 	while (startingTime + AperiodicServerTaskCost > os_time_get()) {;} //lose time in other driving operations
 }

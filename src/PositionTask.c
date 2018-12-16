@@ -62,7 +62,15 @@ static void locate(CarData* carData)
 	
 	UpdatePosition(carData);
 	
-	end = (*carData).NavigationInfo.EndingPoint;
+	if ((*carData).NavigationInfo.StopRequest)
+	{
+		end.Latitude = ((*carData).NavigationInfo.EndingPoint.Latitude + (*carData).NavigationInfo.CurrentPoint.Latitude) / 2;
+		end.Longitude = ((*carData).NavigationInfo.EndingPoint.Longitude + (*carData).NavigationInfo.CurrentPoint.Longitude) / 2;
+	}
+	else
+	{
+		end = (*carData).NavigationInfo.EndingPoint;
+	}
 	start = (*carData).NavigationInfo.CurrentPoint;
 	
 	nextCheckPoint.Latitude = lerp(end.Latitude, start.Latitude, 0.1);
