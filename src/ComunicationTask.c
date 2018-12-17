@@ -53,5 +53,6 @@ __task void ComunicationTask(void *argv)
 		comunicate(carData);
 		Log_Comunication_End();
 		os_itv_wait();
+		os_itv_set(ComunicationTaskPeriod);
 	}
 }

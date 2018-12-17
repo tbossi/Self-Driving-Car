@@ -95,5 +95,6 @@ __task void PositionTask(void *argv)
 		locate(carData);
 		Log_Position_End();
 		os_itv_wait();
+		os_itv_set(PositionTaskPeriod);
 	}
 }

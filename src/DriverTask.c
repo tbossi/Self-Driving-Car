@@ -65,5 +65,6 @@ __task void DriverTask(void *argv)
 		drive(carData);
 		Log_Driver_End();
 		os_itv_wait();
+		os_itv_set(DriverTaskPeriod);		
 	}
 }
