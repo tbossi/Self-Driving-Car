@@ -4,7 +4,7 @@
 #include "CarInfo.h"
 #include "HardwareController.h"
 
-/*** Structs for handle action to simulate ***/
+/*** Structs to handle action to simulate ***/
 typedef void (*setter_pointer)(void*);
 typedef struct Callback
 {
@@ -85,22 +85,24 @@ static void Execute(Action a)
 
 static double Speed_1 = 30.0;
 static double Speed_2 = 20.0;
+static double Speed_3 = 50.0;
 static double SteeringAngle_1 = 0;
 static double Oil_1 = 40.0;
-static double Left_1 = 180;
-static double Right_1 = 60;
-static double Right_2 = 1;
-static double Front_1 = 290.0;
-static double Rear_1 = 250.0;
+static double Oil_2 = 10.0;
+
+static double goodSpace_1 = 90;
+static double goodSpace_2 = 193;
+static double badSpace_1 = 1;
+
 static int Lane_1 = 0;
 static CarLocation Current_1 = { 13.5006, 17.6445 };
 static CarLocation Current_2 = { 14.1924, 16.5643 };
 static CarLocation End_1 = { 19.197, 2.0078 };
 
-U16 allInternalFlags = E_SpaceLeft | E_SpaceRight | E_SpaceFront | E_SpaceRear | E_Lane | E_Speed | E_SteeringAngle | E_Oil;
-U16 allExternalFlags = E_Ext_StopRequest | E_Ext_RoadSign | E_Ext_NearCarInfo | E_Ext_GPS | E_Ext_EndingPoint;
+static U16 allInternalFlags = E_SpaceLeft | E_SpaceRight | E_SpaceFront | E_SpaceRear | E_Lane | E_Speed | E_SteeringAngle | E_Oil;
+static U16 allExternalFlags = E_Ext_StopRequest | E_Ext_RoadSign | E_Ext_NearCarInfo | E_Ext_GPS | E_Ext_EndingPoint;
 
-void ResetAll(int wait)
+static void ResetAll(int wait)
 {
 	// resetting inputs to 0:
 	Execute(action(cb(nop, &Speed_1), allInternalFlags, Notify_AperiodicServer, 0));
@@ -108,25 +110,43 @@ void ResetAll(int wait)
 	Execute(action(cb(nop, &Speed_1), allExternalFlags, Notify_Comunication, wait)); 
 }
 
-void EventSet1(int wait)
+static void EventSet1(int wait)
 {
 	Execute(action(cb(oil, &Oil_1), E_Oil, Notify_AperiodicServer, 0));
-	Execute(action(cb(spaceRear, &Rear_1), E_SpaceRear, Notify_AperiodicServer, 0));
-	Execute(action(cb(spaceLeft, &Left_1), E_SpaceLeft, Notify_AperiodicServer, 0));
-	Execute(action(cb(spaceFront, &Front_1), E_SpaceFront, Notify_AperiodicServer, 0));
-	Execute(action(cb(spaceRight, &Right_1), E_SpaceRight, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceRear, &goodSpace_1), E_SpaceRear, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceLeft, &goodSpace_1), E_SpaceLeft, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceFront, &goodSpace_1), E_SpaceFront, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceRight, &goodSpace_1), E_SpaceRight, Notify_AperiodicServer, 0));
 	Execute(action(cb(speed, &Speed_2), E_Speed, Notify_AperiodicServer, 0));
 	Execute(action(cb(currentLocation, &Current_1), E_Ext_GPS, Notify_Position, 0));
 	Execute(action(cb(endingPoint, &End_1), E_Ext_EndingPoint, Notify_Position, 10));
 	Execute(action(cb(currentLocation, &Current_2), E_Ext_GPS, Notify_Position, wait));
 }
 
-void Emergency1(int wait)
+static void EventSet2(int wait)
 {
-	Execute(action(cb(speed, &Speed_1), E_Speed, Notify_AperiodicServer, 0));
-	Execute(action(cb(spaceRight, &Right_2), E_SpaceRight, Notify_AperiodicServer, wait));
+	Execute(action(cb(oil, &Oil_2), E_Oil, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceRear, &goodSpace_2), E_SpaceRear, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceLeft, &goodSpace_2), E_SpaceLeft, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceFront, &goodSpace_2), E_SpaceFront, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceRight, &goodSpace_2), E_SpaceRight, Notify_AperiodicServer, 0));
+	Execute(action(cb(speed, &Speed_3), E_Speed, Notify_AperiodicServer, 0));
+	Execute(action(cb(currentLocation, &Current_1), E_Ext_GPS, Notify_Position, 0));
+	Execute(action(cb(endingPoint, &End_1), E_Ext_EndingPoint, Notify_Position, 10));
+	Execute(action(cb(currentLocation, &Current_2), E_Ext_GPS, Notify_Position, wait));
 }
 
+static void Emergency1(int wait)
+{
+	Execute(action(cb(speed, &Speed_1), E_Speed, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceRight, &badSpace_1), E_SpaceRight, Notify_AperiodicServer, wait));
+}
+
+static void Emergency2(int wait)
+{
+	Execute(action(cb(speed, &Speed_2), E_Speed, Notify_AperiodicServer, 0));
+	Execute(action(cb(spaceFront, &badSpace_1), E_SpaceFront, Notify_AperiodicServer, wait));
+}
 
 __task void SimulatorTask(void)
 {
@@ -135,9 +155,10 @@ __task void SimulatorTask(void)
 	while(1)
 	{
 		int x;
-		for (x = 0; x < 100; x++)
+		for (x = 0; x < 98; x++)
 		{
-			EventSet1(15);
+			if (x % 6) { EventSet1(17); }
+			else { EventSet2(15); }
 		}
 		
 		Emergency1(233);
