@@ -1086,7 +1086,58 @@ Organizzazione del codice
 \end_layout
 
 \begin_layout Standard
-Il codice è stato organizzato separando ogni task in un file a sè stante.
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename diagrams/ComponentDiagram1.svg
+	width 60text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Component-diagram-che"
+
+\end_inset
+
+Component diagram che mostra le parti principali del sistema
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come mostrato in figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Component-diagram-che"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, il codice è stato organizzato separando ogni task in un file a sè stante.
  Ogni task ha accesso ad una struct condivisa CarData che contiene tutti
  i dati.
 \end_layout
@@ -1094,7 +1145,7 @@ Il codice è stato organizzato separando ogni task in un file a sè stante.
 \begin_layout Standard
 I task interagiscono con l'hardware (sensori e componenti elettro-meccaniche)
  tramite un Hardware Controller.
- Tale componente si occupa di aatrarre dall'hardware esponendo opportune
+ Tale componente si occupa di astrarre dall'hardware esponendo opportune
  funzioni per prelevare i dati dai sensori e controllare il veicolo.
  Nello specifico, l'Hardware Controller espone interfacce per gestire sia
  l'apparato interno sia quello esterno.

@@ -751,7 +751,7 @@ L'ordine di esecuzione dei task è quello stabilito dallo scheduler del kernel
  Si fa notare che mentre i task principali eseguono nei tempi e con i periodi
  indicati in precedenza, il task Base esegue solo quando nessun altro task
  a priorità maggiore è schedulabile; di conseguenza il task Emergency non
- ottiene mai la cpu finchè la sua priorità non viene innalzata (cosa che
+ ottiene mai la cpu finché la sua priorità non viene innalzata (cosa che
  avviene solo quando l'Aperiodic server rileva una situazione di emergenza).
 \end_layout
 
@@ -1145,7 +1145,7 @@ noprefix "false"
 \begin_layout Standard
 I task interagiscono con l'hardware (sensori e componenti elettro-meccaniche)
  tramite un Hardware Controller.
- Tale componente si occupa di aatrarre dall'hardware esponendo opportune
+ Tale componente si occupa di astrarre dall'hardware esponendo opportune
  funzioni per prelevare i dati dai sensori e controllare il veicolo.
  Nello specifico, l'Hardware Controller espone interfacce per gestire sia
  l'apparato interno sia quello esterno.

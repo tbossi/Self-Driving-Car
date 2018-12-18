@@ -129,7 +129,7 @@ Data la limitatezza degli strumenti software utilizzati, il testing è stato
 
 \begin_layout Standard
 Il corretto ordine di esecuzione dei vari task è stato analizzato tramite
- l'opportuna finestra dell'IDE uVision.
+ l'opportuna finestra dell'IDE μVision.
  In particolare, è stato verificato che:
 \end_layout
 
