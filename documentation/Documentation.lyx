@@ -32,7 +32,7 @@
 \spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 0
@@ -49,7 +49,7 @@
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
-\suppress_date false
+\suppress_date true
 \justification true
 \use_refstyle 0
 \use_minted 0
@@ -57,6 +57,10 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -77,51 +81,265 @@
 
 \begin_body
 
-\begin_layout Standard
-Input del sistema:
+\begin_layout Title
+Self Driving Car (Specifica e Design)
 \end_layout
 
-\begin_layout Itemize
-Da GPS esterno (che scrive in memoria): posizione + ultimo aggiornamento;
+\begin_layout Author
+Tommaso Bossi 723370
 \end_layout
 
-\begin_layout Itemize
-Posizione rispetto alla strada: spazio libero a dx + spazio libero a sx
- + numero corsia attuale (caso autostrada altrimenti sempre 0);
-\end_layout
-
-\begin_layout Itemize
-Ostacoli e pericoli
-\end_layout
-
-\begin_layout Itemize
-Comunicazioni da componenti esterni (altri veicoli, segnali intelligenti,
- ecc.)
-\end_layout
-
-\begin_layout Itemize
-Segnali dal motore e dagli altri apparati elettrici e meccanici, che indicano
- lo stato del veicolo
-\end_layout
-
-\begin_layout Itemize
-Input dall'utente (per semplicità l'unico input è la richiesta di fermarsi
- appena possibile): richiesta fermata.
+\begin_layout Part
+Introduzione
 \end_layout
 
 \begin_layout Standard
+Il sistema è il controllore di un veicolo a guida autonoma.
+ Il veicolo deve essere controllato in modo che raggiunga la destinazione
+ (in modo efficiente, senza violare il codice della strada e tenendo conto
+ di eventuali indicazioni dei passeggeri) e che garantisca la sicurezza
+ sia degli occupanti sia delle persone che si trovano in prossimità del
+ veicolo.
+\end_layout
+
+\begin_layout Standard
+Si presuppone che il veicolo sia dotato di vari sensori in grado di rilevare
+ informazioni utili a controllarlo (posizione, ostacoli, segnali, apparati
+ interni, ecc.).
+\end_layout
+
+\begin_layout Standard
+Nello specifico, le responsabilità del controllore sono;
+\end_layout
+
+\begin_layout Enumerate
+decidere il percorso (cambiandolo se necessario);
+\end_layout
+
+\begin_layout Enumerate
+mantenere il motore e gli altri apparati efficienti (quanto meno fare rifornimen
+to quando necessario);
+\end_layout
+
+\begin_layout Enumerate
+guidare (sterzare, accelerare, frenare, ecc.);
+\end_layout
+
+\begin_layout Enumerate
+mantenere aggiornata la conoscenza della strada, in base alle informazioni
+ disponibili da apparati esterni, sensori, ecc.;
+\end_layout
+
+\begin_layout Enumerate
+gestire le situazioni di pericolo.
+\end_layout
+
+\begin_layout Part
+Design e Specifica
+\end_layout
+
+\begin_layout Section
+Organizzazione dei sensori
+\end_layout
+
+\begin_layout Standard
+Il sistema 
+\begin_inset Quotes eld
+\end_inset
+
+Self Driving Car
+\begin_inset Quotes erd
+\end_inset
+
+ è composto da due parti: i sensori interni e i sensori esterni.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diagrams/Car Components.svg
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Class-diagram-che"
+
+\end_inset
+
+Class diagram che mostra come sono organizzati i sensori della Self Driving
+ Car
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I sensori interni aggregano tutti quei sensori che forniscono informazioni
+ rilevanti al fine di guidare il veicolo in sicurezza (stato degli apparati
+ elettro-meccanici e informazioni di contesto).
+ I dati interni provengono da:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Motore fornisce la velocità corrente, e permette di accelerare;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Ruote forniscono l'angolo di sterzata, e permettono di sterzare e frenare;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Serbatoio fornisce il livello della benzina;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Sensori
+\begin_inset space ~
+\end_inset
+
+di
+\begin_inset space ~
+\end_inset
+
+prossimità forniscono la distanza (a destra, sinistra, davanti e dietro)
+ dall'ostacolo più vicino.
+\end_layout
+
+\begin_layout Standard
+I sensori esterni aggregano tutti quei sensori/apparati che forniscono informazi
+oni secondarie utili per organizzare il percorso di guida.
+ I dati esterni provengono da:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+GPS fornisce la posizione e la direzione corrente;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Sistema
+\begin_inset space ~
+\end_inset
+
+di
+\begin_inset space ~
+\end_inset
+
+comunicazione si interfaccia con segnali intelligenti, altri veicoli intelligent
+i e con gli utenti presenti nel veicolo.
+\end_layout
+
+\begin_layout Section
+Task
+\end_layout
+
+\begin_layout Standard
+Il sistema è organizzato in task che gestiscono i vari aspetti della guida
+ autonoma.
+ Sono presenti 4 task principali:
+\end_layout
+
+\begin_layout Description
+Aperiodic
+\begin_inset space ~
+\end_inset
+
+server si occupa di leggere i valori provenienti dai sensori interni e salvarli
+ opportunamente; in seguito valuta se il veicolo si trova in una situazione
+ di emergenza.
+\end_layout
+
+\begin_layout Description
+Drive si occupa di comandare il veicolo (acceleratore, freno e sterzo) in
+ base ai dati memorizzati.
+\end_layout
+
+\begin_layout Description
+Position si occupa di memorizzare la posizione indicata dal GPS e di calcolare
+ il percorso.
+\end_layout
+
+\begin_layout Description
+Comunication si occupa di memorizzare i dati provenienti dai sensori esterni
+ e di comunicare con gli altri veicolo intelligenti.
+\end_layout
+
+\begin_layout Standard
+In aggiunta a questi task sono presenti un task per le emergenze e un task
+ base.
+ Il task Emergency viene svegliato dall'Aperiodic server in casi di emergenza
+ e prende il controllo delle operazioni di guida e posizione.
+\end_layout
+
+\begin_layout Standard
+I task principali hanno i vincoli indicati in tabella:
+\end_layout
+
+\begin_layout Standard
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="15" columns="3">
+<lyxtabular version="3" rows="5" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="right" valignment="top">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Fonte
+Task
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Periodo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Costo
 \end_layout
 
 \end_inset
@@ -130,7 +348,7 @@ Fonte
 \begin_inset Text
 
 \begin_layout Plain Layout
-Input
+Spostamento a 50 km/h
 \end_layout
 
 \end_inset
@@ -139,18 +357,36 @@ Input
 \begin_inset Text
 
 \begin_layout Plain Layout
-Task associati
+Spostamento a 110 km/h
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-GPS
+Aperiodic server
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 ms
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1 ms
 \end_layout
 
 \end_inset
@@ -159,12 +395,70 @@ GPS
 \begin_inset Text
 
 \begin_layout Plain Layout
-Posizione
+1.39 cm
 \end_layout
 
 \end_inset
 </cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.06 cm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Drive
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10 ms
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 ms
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13.89 cm
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30.56 cm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -173,13 +467,20 @@ Position
 
 \end_inset
 </cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+50 ms
+\end_layout
 
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15 ms
 \end_layout
 
 \end_inset
@@ -188,7 +489,7 @@ Position
 \begin_inset Text
 
 \begin_layout Plain Layout
-Ultimo aggiornamento
+69.44 cm
 \end_layout
 
 \end_inset
@@ -197,264 +498,14 @@ Ultimo aggiornamento
 \begin_inset Text
 
 \begin_layout Plain Layout
-Position
+152.76 cm
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Posizione sulla strada
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Spazio a destra
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Driver
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Spazio a sinistra
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Driver
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Numero di corsia
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Position
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Apparati elettrici e meccanici
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Velocità
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Driver
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Accelerazione
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Driver
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Livello benzina
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Aperiodic Server
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Sterzo
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Driver
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Ostacoli e pericoli
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Sensore prossimità ostacoli
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Comunication, Aperiodic Server
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Comunicazioni con dispositivi esterni
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Segnali intelligenti
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -463,71 +514,20 @@ Comunication
 
 \end_inset
 </cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+200 ms
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Veicoli vicini (posizione + velocità)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Position, Comunication
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Variazioni nella viabilità
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Position, Comunication
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Utente
+30 ms
 \end_layout
 
 \end_inset
@@ -536,7 +536,7 @@ Utente
 \begin_inset Text
 
 \begin_layout Plain Layout
-Richiesta fermata
+277.76 cm
 \end_layout
 
 \end_inset
@@ -545,7 +545,7 @@ Richiesta fermata
 \begin_inset Text
 
 \begin_layout Plain Layout
-Position, Aperiodic Server
+611.11 cm
 \end_layout
 
 \end_inset
@@ -556,6 +556,604 @@ Position, Aperiodic Server
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Si noti che in tabella viene riportato per chiarezza anche lo spostamento
+ corrispondente al periodo di esecuzione sia a 50 km/h sia a 110 km/h.
+\end_layout
+
+\begin_layout Standard
+Applicando il Completion time test per la Rate Monotonic Analysis si ha:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{split}t_{0}=W(0)= & 0.1+1+15+30=46.1\\
+t_{1}=W(t_{0})= & 46\cdot0.1+4\cdot1+15+30=53.6\\
+t_{2}=W(t_{1})= & 53\cdot0.1+5\cdot1+15+30=55.3\\
+t_{3}=W(t_{2})= & 55\cdot0.1+5\cdot1+15+30=55.5\\
+t_{4}=W(t_{3})= & 55\cdot0.1+5\cdot1+15+30=55.5
+\end{split}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi i task principali sono schedulabili con i periodi indicati in tabella.
+\end_layout
+
+\begin_layout Standard
+Nello specifico i task hanno le seguenti priorità:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Task
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Priorità
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Aperiodic server
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Drive
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Position
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Comunication
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Base
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Emergency
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 (90 se emergenza)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'ordine di esecuzione dei task è quello stabilito dallo scheduler del kernel
+ RTX in base alle priorità indicate in tabella.
+ Si fa notare che mentre i task principali eseguono nei tempi e con i periodi
+ indicati in precedenza, il task Base esegue solo quando nessun altro task
+ a priorità maggiore è schedulabile; di conseguenza il task Emergency non
+ ottiene mai la cpu finchè la sua priorità non viene innalzata (cosa che
+ avviene solo quando l'Aperiodic server rileva una situazione di emergenza).
+\end_layout
+
+\begin_layout Standard
+Il funzionamento generale del sistema è indicato dalla figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Activity-diagram-che"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Il sistema all'avvio inizializza i task elencati in precedenza assegnando
+ a ciascuno l'opportuna priorità.
+ Si fa notare che i task condividono una struttura dati CarData che contiene
+ tutti i dati aggiornati letti dai sensori ed eventuali valori computati
+ da ciascun task che possono essere utili anche agli altri.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diagrams/ActivityDiagram1.svg
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Activity-diagram-che"
+
+\end_inset
+
+Activity diagram che mostra il funzionamento dei task
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Aperiodic server
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename diagrams/Emergency sequence.svg
+	width 60text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Sequence-diagram-che"
+
+\end_inset
+
+Sequence diagram che mostra il funzionamento dell'Aperiodic server (e l'interazi
+one con Emergency)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'Aperiodic server (figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sequence-diagram-che"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) ad ogni esecuzione legge i valori dai sensori interni e li memorizza nella
+ struttura dati condivisa.
+ Quindi usando questi dati valuta se il veicolo si trova in una situazione
+ di emergenza, e in tal caso sveglia il task Emergency (elevandone la priorità
+ a 90).
+ Infine, l'Aperiodi server si ferma in attesa di essere rischedulato.
+\end_layout
+
+\begin_layout Standard
+Quando il task Emergency va in esecuzione ha una priorità superiore a tutti
+ i task eccetto l'Aperiodic server.
+ Per tale ragione Emergency effettua delle operazioni di guida e posizione
+ al fine di superare l'emergenza.
+ Solo quando l'emergenza termina, Emergency si ferma (riabbassando la sua
+ priorità) e quindi lo scheduler è in grado di ripristinare il normale ordine
+ di esecuzione dei task.
+\end_layout
+
+\begin_layout Paragraph
+Driver
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename diagrams/Driver sequence.svg
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Sequence-diagram-che-1"
+
+\end_inset
+
+Sequence diagram che mostra il funzionamento di Driver
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il Driver (figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sequence-diagram-che-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) si occupa di controllare lo spostamento del veicolo.
+ A tale scopo preleva i dati aggiornati dalla struttura condivisa e li utilizza
+ per calcolare accelerazione, frenata e sterzo.
+ Una volta inviati i comandi opportuni ai vari apparati, Driver si ferma
+ in attesa di essere rischedulato.
+\end_layout
+
+\begin_layout Paragraph
+Position
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename diagrams/Position sequence.svg
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Sequence-diagram-che-2"
+
+\end_inset
+
+Sequence diagram che mostra il funzionamento di Position
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il Position (figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sequence-diagram-che-2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) si occupa di valutare il percorso migliore per il veicolo.
+ A tale scopo legge la posizione aggiornata dal GPS e la utilizza insieme
+ ad altri dati condivisi per calcolare il checkpoint successivo per cui
+ il veicolo dovrà passare.
+ Tutti i dati di navigazione importanti vengono memorizzati nella struttura
+ condivisa, quindi Position si ferma in attesa di essere rischedulato.
+\end_layout
+
+\begin_layout Paragraph
+Comunication
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename diagrams/Communication sequence.svg
+	width 40text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Sequence-diagram-che-3"
+
+\end_inset
+
+Sequence diagram che mostra il funzionamento di Comunication
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il Comunication (figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sequence-diagram-che-3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) si occupa di gestire gli input e output a bassa priorità.
+ A tale scopo legge i valori aggiornati dai sensori esterni e processa i
+ messaggi ricevuti memorizzando tutti i dati nella struttura condivisa.
+ Successivamente genera un messaggio contenente informazioni rilevanti per
+ i veicoli circostanti e lo trasmette in broadcast.
+ Infine, Comunication si ferma in attesa di essere rischedulato.
+\end_layout
+
+\begin_layout Section
+Organizzazione del codice
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename diagrams/ComponentDiagram1.svg
+	width 60text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Component-diagram-che"
+
+\end_inset
+
+Component diagram che mostra le parti principali del sistema
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come mostrato in figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Component-diagram-che"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, il codice è stato organizzato separando ogni task in un file a sè stante.
+ Ogni task ha accesso ad una struct condivisa CarData che contiene tutti
+ i dati.
+\end_layout
+
+\begin_layout Standard
+I task interagiscono con l'hardware (sensori e componenti elettro-meccaniche)
+ tramite un Hardware Controller.
+ Tale componente si occupa di aatrarre dall'hardware esponendo opportune
+ funzioni per prelevare i dati dai sensori e controllare il veicolo.
+ Nello specifico, l'Hardware Controller espone interfacce per gestire sia
+ l'apparato interno sia quello esterno.
+\end_layout
+
+\begin_layout Standard
+Tramite tale livello di astrazione è possibile sostituire ai sensori reali
+ un simulatore senza che ciò comporti modifiche ai task.
 \end_layout
 
 \end_body
